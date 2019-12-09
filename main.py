@@ -1,3 +1,11 @@
+"""
+Python WebScraping Project
+Written by: Wil Neumann, Charlie Walker, and Keevin Lane
+12/15/19
+A Program designed to scrape the web for esport player data for the games League of Legends, 
+Destiny2, DotA2, and Rainbow 6 Siege in order to apply a weighted scoring system to player 
+performances for use in fantasy team creation or generally judging the ability of players.
+"""
 import sys
 import backend
 

@@ -28,9 +28,10 @@ class DotAPlayer:
 
 
 def dotaStart():
+    #retrieving location of project for file saving
     path = os.path.dirname(os.path.abspath(__file__))
     filepath = os.path.join(path,"_ datdota » Average Player Performances  .csv")
-
+    #checking for existing data for faster execution if update isn't needed
     if os.path.exists(filepath):
         x = True
 
@@ -50,7 +51,7 @@ def dotaStart():
     else:
         getCSV(path)
 
-
+#using selenium to download CSV file from site to acquire player data
 def getCSV(path):
     driverpath = os.path.join(path, 'chromedriver.exe')
     print(driverpath)

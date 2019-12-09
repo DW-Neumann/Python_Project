@@ -36,6 +36,7 @@ def scrapeTop():
     url = "https://gol.gg/players/list/season-S9/split-ALL/tournament-ALL/position-TOP/week-ALL/"
     page = requests.get(url)
     soup = BeautifulSoup(page.content, 'html.parser')
+    #HTML is dynamically created on page load so tracking by table id not possible
     tb = soup.find('table', {'class': 'table_list playerslist tablesaw trhover'})
 
     for tr in tb.find_all('tr')[1:]:

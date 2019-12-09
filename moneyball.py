@@ -1,7 +1,15 @@
 import math
 
-def moneyBallLoL(player):
-    player.score = (player.K * 2.0 - player.D * .5 + player.A * 1.5 + player.CSM + player.PK * 10.0)
+def moneyBallLoL(lists):
+    keys = lists.keys()
+    for key in keys:
+        for player in lists[key]:
+            player.score = (player.K * 2.0 - player.D * .5 + player.A * 1.5 + player.CSM + player.PK * 10.0)
+
+    sortLoL(lists)
+    for key in keys:
+        for player in lists[key]:
+            print("{} : {}".format(player.name, player.score))
 
 def moneyBallD2(player):
     #weighs players total kills
@@ -36,9 +44,23 @@ def moneyBallD2(player):
     return player.score
 
 def moneyBallDota(players):
-    #placeholder
-    """
+    
     for player in players:
-        
-    """
-    return "placeholder"
+        if player.HH > 1000:
+            tempHH = round(player.HH, -3)
+            player.score += .4*(tempHH/1000)
+        if player.HD > 1000:
+            tempHD = round(player.HD, -3)
+            player.score += .3*(tempHD/1000)
+        if player.TD > 1000:
+            tempTD = round(player.TD, -3)
+            player.score += .2*(tempTD/1000)
+
+        player.score += player.K * .3 + player.D * -.3 + player.A * .15 + player.LH * .003 + player.De * .0015
+
+    return players
+
+def sortLoL(lists):
+    keys = lists.keys()
+    for k in keys:
+        lists[k].sort(key = lambda LoLPlayer: LoLPlayer.score, reverse=True)

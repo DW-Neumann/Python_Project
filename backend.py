@@ -2,10 +2,7 @@ import moneyball, LoL, DotA2, d2
 
 def lolStats():
     lists = LoL.scrapeLoL()
-    keys = lists.keys()
-    for key in keys:
-        for player in lists[key]:
-            print(moneyball.moneyBallLoL(player))
+    moneyball.moneyBallLoL(lists)
 
       
 def d2Stats():
