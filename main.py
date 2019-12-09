@@ -8,10 +8,10 @@ while(True):
     if inp == "1":
         backend.lolStats()
     elif inp == "2":
-        print(2)
-        #D2 stuff
+        backend.d2Stats()
     elif inp == "3":
-        backend.DotA2.dotaStart()
+        print(3)
+        #Dota stuff
     elif inp == "4":
         print(4)
         #R6S stuff
