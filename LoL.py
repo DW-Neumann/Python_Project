@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import sys, requests
 
-class Player:
+class LoLPlayer:
     name = ""
     K = 0.0
     D = 0.0
@@ -19,7 +19,14 @@ class Player:
         self.CSM = inCSM
         self.PK = inPK
         
-
+def scrapeLoL():
+    leaguePlayers = {}
+    leaguePlayers["Top"] = scrapeTop()
+    leaguePlayers["Jung"] = scrapeJg()
+    leaguePlayers["Mid"] = scrapeMid()
+    leaguePlayers["Adc"] = scrapeAdc()
+    leaguePlayers["Sup"] = scrapeSup()
+    return leaguePlayers
 
 
 def scrapeTop():
@@ -39,7 +46,7 @@ def scrapeTop():
         assists = float(tds[7].text)
         csm = float(tds[8].text)
         pentas = float(tds[21].text)
-        topList.append(Player(name, kills, deaths, assists, csm, pentas))
+        topList.append(LoLPlayer(name, kills, deaths, assists, csm, pentas))
     return topList
 
 
@@ -60,7 +67,7 @@ def scrapeMid():
         assists = float(tds[7].text)
         csm = float(tds[8].text)
         pentas = float(tds[21].text)
-        midList.append(Player(name, kills, deaths, assists, csm, pentas))
+        midList.append(LoLPlayer(name, kills, deaths, assists, csm, pentas))
 
     return midList
 
@@ -82,7 +89,7 @@ def scrapeJg():
         assists = float(tds[7].text)
         csm = float(tds[8].text)
         pentas = float(tds[21].text)
-        jgList.append(Player(name, kills, deaths, assists, csm, pentas))
+        jgList.append(LoLPlayer(name, kills, deaths, assists, csm, pentas))
 
     return jgList
 
@@ -104,7 +111,7 @@ def scrapeAdc():
         assists = float(tds[7].text)
         csm = float(tds[8].text)
         pentas = float(tds[21].text)
-        adcList.append(Player(name, kills, deaths, assists, csm, pentas))
+        adcList.append(LoLPlayer(name, kills, deaths, assists, csm, pentas))
 
     return adcList
 
@@ -126,6 +133,6 @@ def scrapeSup():
         assists = float(tds[7].text)
         csm = float(tds[8].text)
         pentas = float(tds[21].text)
-        supList.append(Player(name, kills, deaths, assists, csm, pentas))
+        supList.append(LoLPlayer(name, kills, deaths, assists, csm, pentas))
 
     return supList
