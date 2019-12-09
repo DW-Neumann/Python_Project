@@ -34,3 +34,11 @@ def moneyBallD2(player):
         
     player.score = (player.KD * 2.0 + player.E * .5 + player.winRatio * 2 + totalKillsWeight + totalAssistsWeight)
     return player.score
+
+def moneyBallDota(players):
+    #placeholder
+    """
+    for player in players:
+        
+    """
+    return "placeholder"
