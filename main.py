@@ -10,8 +10,7 @@ while(True):
     elif inp == "2":
         backend.d2Stats()
     elif inp == "3":
-        print(3)
-        #Dota stuff
+        backend.dotaStats()
     elif inp == "4":
         print(4)
         #R6S stuff
