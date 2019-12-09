@@ -11,8 +11,7 @@ while(True):
         print(2)
         #D2 stuff
     elif inp == "3":
-        print(3)
-        #Dota stuff
+        backend.DotA2.dotaStart()
     elif inp == "4":
         print(4)
         #R6S stuff
