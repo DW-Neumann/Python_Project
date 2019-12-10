@@ -20,8 +20,7 @@ while(True):
     elif inp == "3":
         backend.dotaStats()
     elif inp == "4":
-        print(4)
-        #R6S stuff
+        backend.r6Stats()
     elif inp == "5":
         exit()
     else:
