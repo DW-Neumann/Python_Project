@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-import sys, requests
+import sys, requests, json, jsonpickle, moneyball, os
 
 class LoLPlayer:
     name = ""
@@ -11,22 +11,63 @@ class LoLPlayer:
     score = 0.0
 
 
-    def __init__(self, inName, inK, inD, inA, inCSM, inPK):
+    def __init__(self, inName, inK, inD, inA, inCSM, inPK, inscore = 0.0):
         self.name = inName
         self.K = inK
         self.D = inD
         self.A = inA
         self.CSM = inCSM
         self.PK = inPK
+        self.score = inscore
+
+
+def lolStart():
+    #retrieving location of project for file saving
+    path = os.path.dirname(os.path.abspath(__file__))
+    filepath = os.path.join(path,"loldata.json")
+    #checking for existing data for faster execution if update isn't needed
+    if os.path.exists(filepath):
+        x = True
+
+        while x == True:
+            print("An old data file has been found, would you like to seek new data?(Y/N)")
+            lolinput = input().lower()
+
+            if lolinput == "y":
+                os.remove(filepath)
+                print("Old data file removed, now seeking new data.")
+                x = False
+                loldata = scrapeLoL(filepath)
+                return loldata
+            elif lolinput == "n":
+                print("Parsing current data for display.")
+                x = False
+                loldata = parseJSON(filepath)
+                return loldata
+    else:
+        loldata = scrapeLoL(filepath)
+        return loldata
         
-def scrapeLoL():
+
+def scrapeLoL(path):
     leaguePlayers = {}
     leaguePlayers["Top"] = scrapeTop()
     leaguePlayers["Jung"] = scrapeJg()
     leaguePlayers["Mid"] = scrapeMid()
     leaguePlayers["Adc"] = scrapeAdc()
     leaguePlayers["Sup"] = scrapeSup()
+    with open(path, 'w') as outfile:
+        json.dump(jsonpickle.encode(leaguePlayers), outfile)
+    leaguePlayers = moneyball.moneyBallLoL(leaguePlayers)
     return leaguePlayers
+
+
+def parseJSON(path):
+    with open(path) as jsonfile:
+        loldata = json.load(jsonfile)
+        loldata = jsonpickle.decode(loldata)
+        print(loldata)
+        return loldata
 
 
 def scrapeTop():

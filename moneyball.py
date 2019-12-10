@@ -7,9 +7,7 @@ def moneyBallLoL(lists):
             player.score = (player.K * 2.0 - player.D * .5 + player.A * 1.5 + player.CSM + player.PK * 10.0)
 
     sortLoL(lists)
-    for key in keys:
-        for player in lists[key]:
-            print("{} : {}".format(player.name, player.score))
+    return lists
 
 def moneyBallD2(player):
     #weighs players total kills
@@ -57,10 +55,13 @@ def moneyBallDota(players):
             player.score += .2*(tempTD/1000)
 
         player.score += player.K * .3 + player.D * -.3 + player.A * .15 + player.LH * .003 + player.De * .0015
-
+    sortDotA(players)
     return players
 
 def sortLoL(lists):
     keys = lists.keys()
     for k in keys:
         lists[k].sort(key = lambda LoLPlayer: LoLPlayer.score, reverse=True)
+
+def sortDotA(list):
+    list.sort(key = lambda DotAPlayer: DotAPlayer.score, reverse=True)

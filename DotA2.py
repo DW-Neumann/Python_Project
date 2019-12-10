@@ -1,5 +1,5 @@
 from selenium import webdriver
-import time, os, csv
+import time, os, csv, moneyball
 
 class DotAPlayer:
     name = ""
@@ -43,13 +43,19 @@ def dotaStart():
                 os.remove(filepath)
                 print("Old data file removed, now seeking new data.")
                 x = False
-                getCSV(path)
+                dotalist = getCSV(path)
+                dotalist = moneyball.moneyBallDota(dotalist)
+                return dotalist
             elif dotainput == "n":
                 print("Parsing current data for display.")
                 x = False
-                parseCSV(path)
+                dotalist = parseCSV(path)
+                dotalist = moneyball.moneyBallDota(dotalist)
+                return dotalist
     else:
-        getCSV(path)
+        dotalist = getCSV(path)
+        dotalist = moneyball.moneyBallDota(dotalist)
+        return dotalist
 
 #using selenium to download CSV file from site to acquire player data
 def getCSV(path):
@@ -79,7 +85,5 @@ def parseCSV(path):
         csvreader = csv.reader(csvfile, delimiter=',')
         next(csvreader)
         for row in csvreader:
-            playerList.append(DotAPlayer(row[0], row[7], row[8], row[9], row[14], row[15], row[17], row[18], row[19]))
-    for player in playerList[:50]:
-        print(player.name)
+            playerList.append(DotAPlayer(row[0], float(row[7]), float(row[8]), float(row[9]), float(row[14]), float(row[15]), float(row[17]), float(row[18]), float(row[19])))
     return playerList

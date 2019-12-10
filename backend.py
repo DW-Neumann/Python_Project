@@ -1,10 +1,14 @@
 import moneyball, LoL, DotA2, d2, R6S
 
 def lolStats():
-    lists = LoL.scrapeLoL()
-    moneyball.moneyBallLoL(lists)
+    loldata = LoL.lolStart()
+    keys = loldata.keys()
+    print("Top 5 players in each role.")
+    for key in keys:
+        for player in loldata[key][:5]:
+            print("{}\t{} :{}".format(key, player.name, player.score))
 
-      
+
 def d2Stats():
     playerStats = d2.scrapeD2()
     print(playerStats.name, end = " ")
@@ -16,7 +20,8 @@ def r6Stats():
     lists = R6S.stats()
     moneyball.moneyBallR6(lists)
 
-    
+
 def dotaStats():
-    dotaList = DotA2.dotaStart()
-    print(moneyball.moneyBallDota(dotaList))
+    dotadata = DotA2.dotaStart()
+    for player in dotadata[:20]:
+        print("{} :{}".format(player.name, player.score))
