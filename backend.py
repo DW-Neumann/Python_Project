@@ -6,7 +6,7 @@ def lolStats():
     print("Top 5 players in each role.")
     for key in keys:
         for player in loldata[key][:5]:
-            print("{}\t{} :{}".format(key, player.name, player.score))
+            print("{} {} :{}".format(key, player.name, player.score))
 
 
 def d2Stats():

@@ -11,7 +11,7 @@ class LoLPlayer:
     score = 0.0
 
 
-    def __init__(self, inName, inK, inD, inA, inCSM, inPK, inscore = 0.0):
+    def __init__(self, inName, inK, inD, inA, inCSM, inPK, inscore):
         self.name = inName
         self.K = inK
         self.D = inD
@@ -56,9 +56,9 @@ def scrapeLoL(path):
     leaguePlayers["Mid"] = scrapeMid()
     leaguePlayers["Adc"] = scrapeAdc()
     leaguePlayers["Sup"] = scrapeSup()
+    leaguePlayers = moneyball.moneyBallLoL(leaguePlayers)
     with open(path, 'w') as outfile:
         json.dump(jsonpickle.encode(leaguePlayers), outfile)
-    leaguePlayers = moneyball.moneyBallLoL(leaguePlayers)
     return leaguePlayers
 
 
@@ -66,7 +66,6 @@ def parseJSON(path):
     with open(path) as jsonfile:
         loldata = json.load(jsonfile)
         loldata = jsonpickle.decode(loldata)
-        print(loldata)
         return loldata
 
 
@@ -88,7 +87,7 @@ def scrapeTop():
         assists = float(tds[7].text)
         csm = float(tds[8].text)
         pentas = float(tds[21].text)
-        topList.append(LoLPlayer(name, kills, deaths, assists, csm, pentas))
+        topList.append(LoLPlayer(name, kills, deaths, assists, csm, pentas, 0))
     return topList
 
 
@@ -109,7 +108,7 @@ def scrapeMid():
         assists = float(tds[7].text)
         csm = float(tds[8].text)
         pentas = float(tds[21].text)
-        midList.append(LoLPlayer(name, kills, deaths, assists, csm, pentas))
+        midList.append(LoLPlayer(name, kills, deaths, assists, csm, pentas, 0))
 
     return midList
 
@@ -131,7 +130,7 @@ def scrapeJg():
         assists = float(tds[7].text)
         csm = float(tds[8].text)
         pentas = float(tds[21].text)
-        jgList.append(LoLPlayer(name, kills, deaths, assists, csm, pentas))
+        jgList.append(LoLPlayer(name, kills, deaths, assists, csm, pentas, 0))
 
     return jgList
 
@@ -153,7 +152,7 @@ def scrapeAdc():
         assists = float(tds[7].text)
         csm = float(tds[8].text)
         pentas = float(tds[21].text)
-        adcList.append(LoLPlayer(name, kills, deaths, assists, csm, pentas))
+        adcList.append(LoLPlayer(name, kills, deaths, assists, csm, pentas, 0))
 
     return adcList
 
@@ -175,6 +174,6 @@ def scrapeSup():
         assists = float(tds[7].text)
         csm = float(tds[8].text)
         pentas = float(tds[21].text)
-        supList.append(LoLPlayer(name, kills, deaths, assists, csm, pentas))
+        supList.append(LoLPlayer(name, kills, deaths, assists, csm, pentas, 0))
 
     return supList
