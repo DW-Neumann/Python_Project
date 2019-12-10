@@ -1,4 +1,4 @@
-import moneyball, LoL, DotA2, d2
+import moneyball, LoL, DotA2, d2, R6S
 
 def lolStats():
     lists = LoL.scrapeLoL()
@@ -12,12 +12,11 @@ def d2Stats():
     print(moneyball.moneyBallD2(playerStats))
 
 
-"""
-def r6sStats():
-    #call moneyball on players
-"""
+def r6Stats():
+    lists = R6S.stats()
+    moneyball.moneyBallR6(lists)
 
+    
 def dotaStats():
     dotaList = DotA2.dotaStart()
     print(moneyball.moneyBallDota(dotaList))
-
