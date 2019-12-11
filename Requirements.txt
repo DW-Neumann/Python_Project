@@ -1,0 +1,6 @@
+$ pip list
+beautifulsoup4 (4.8.1)
+selenium (3.141.0)
+jsonpickle (1.2)
+requests (2.22.0)
+r6sapi (1.1.0)
