@@ -1,4 +1,4 @@
-import asyncio
+import asyncio, os
 import r6sapi as api
 
 
@@ -31,7 +31,8 @@ async def stats():
     proPlayers = []
 
     # open text file and read each line into list
-    statFile = open('R6ProPlayers.txt')
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'R6ProPlayers.txt')
+    statFile = open(path)
     for line in statFile:
         playerList.append(line.replace('\n', ''))
 

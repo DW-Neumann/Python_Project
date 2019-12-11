@@ -62,24 +62,24 @@ def scrapeD2():
     for i in valueList:
         count += 1
         #Gets KD ratio
-        if count == 12:
+        if count == 5:
             KD = float(i.getText())
         #Gets Efficiency
-        if count == 13:
+        if count == 6:
             E = float(i.getText())
         #Gets Win Ratio
-        if count == 14:
+        if count == 7:
             temp = i.getText().split("%")
             winRatio = float(temp[0])
         #Gets total kills
-        if count == 15:
+        if count == 8:
             temp = i.getText().split(",")
             tempFinal = ""
             for j in range(len(temp)):
                 tempFinal = tempFinal + temp[j]
             totalKills = float(tempFinal)
         #Gets total assists
-        if count == 16:
+        if count == 9:
             temp = i.getText().split(",")
             tempFinal = ""
             for j in range(len(temp)):

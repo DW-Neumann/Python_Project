@@ -74,8 +74,9 @@ def getCSV(path):
     driver.find_element_by_xpath('//*[@id="DataTables_Table_0_wrapper"]/div[1]/div/a[2]/span').click()
     time.sleep(5)
     driver.quit()
-    parseCSV(path)
-
+    plist = parseCSV(path)
+    return plist
+    
 
 def parseCSV(path):
     playerList = []

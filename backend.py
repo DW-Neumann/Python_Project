@@ -18,7 +18,7 @@ def d2Stats():
 
 def r6Stats():
     stats = R6S.start()
-    moneyBall.moneyBallR6S(stats)
+    moneyball.moneyBallR6S(stats)
 
 
 def dotaStats():
