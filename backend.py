@@ -17,8 +17,8 @@ def d2Stats():
 
 
 def r6Stats():
-    lists = R6S.stats()
-    moneyball.moneyBallR6(lists)
+    stats = R6S.start()
+    moneyBall.moneyBallR6S(stats)
 
 
 def dotaStats():
