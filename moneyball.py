@@ -58,6 +58,16 @@ def moneyBallDota(players):
     sortDotA(players)
     return players
 
+def moneyBallR6S(players):
+    print("Player ratings in descending order from highest to lowest:")
+    for player in players:
+        player.score = round(((player.kills * 2.0) - (player.deaths * .5) + (player.assists * 1.5) + 
+                              (player.revives * .5)) * player.accuracy * player.winRate, 2)
+    sortR6S(players)
+    for player in players:
+        print("{} has a player rating of {}".format(player.name, player.score))
+
+
 def sortLoL(lists):
     keys = lists.keys()
     for k in keys:
@@ -65,3 +75,6 @@ def sortLoL(lists):
 
 def sortDotA(list):
     list.sort(key = lambda DotAPlayer: DotAPlayer.score, reverse=True)
+    
+def sortR6S(lists):
+    lists.sort(key = lambda R6Player: R6Player.score, reverse=True)
